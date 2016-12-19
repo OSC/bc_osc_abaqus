@@ -1,0 +1,9 @@
+---
+name: Abaqus/CAE
+description: |-
+  **Abaqus/CAE** provides access to the Abaqus GUI on one or more compute nodes
+  on the Oakley cluster at the Ohio Supercomputer Center (OSC).
+category: Desktop Apps
+subcategory: Interactive HPC
+role: ihpc
+url: /pun/sys/vncsim/%{app_token}/sessions

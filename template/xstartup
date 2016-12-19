@@ -1,0 +1,22 @@
+#!/bin/bash -l
+
+# Launch FVWM
+FVWM_ASSETS_ROOT="${ROOT}/bc_fvwm_assets/template"
+FVWM_ROOT="${FVWM_ASSETS_ROOT}" "${FVWM_ASSETS_ROOT}/fvwm_wrapper" -f "${ROOT}/fvwm/fvwmrc" &
+
+# Load the Abaqus module
+module load ${ABAQUS_MODULE}
+
+#
+# Start Abaqus
+#
+
+if [[ ${GPU_OFF} ]]; then
+  abaqus cae -mesa
+else
+  module load virtualgl
+  vglrun abaqus cae
+fi
+
+# Kill vncserver when user closes GUI
+vncserver -kill ${DISPLAY}
