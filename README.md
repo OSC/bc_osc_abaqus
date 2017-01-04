@@ -1,5 +1,8 @@
 # Batch Connect - OSC Abaqus/CAE
 
+![GitHub Release](https://img.shields.io/github/release/osc/bc_osc_abaqus.svg)
+![GitHub License](https://img.shields.io/github/license/osc/bc_osc_abaqus.svg)
+
 A VNCSim app designed for OSC OnDemand that launches Abaqus within an Oakley
 batch job.
 
