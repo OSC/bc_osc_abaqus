@@ -1,8 +1,9 @@
 title: 'Abaqus/CAE'
 compute:
-  - name: 'Abaqus/CAE 6.14 (Software Rendering)'
+  - &abaqus
+    name: 'Abaqus/CAE 6.14 (Software Rendering)'
     batch: 'oakley'
-    node:
+    node: &software_nodes
       - type: 'any'
         ppn: 12
         desc: >
@@ -23,11 +24,11 @@ compute:
       envvars:
         ABAQUS_MODULE: 'abaqus/6.14'
         GPU_OFF: '1'
-      resources:
+      resources: &resources
         software: 'abaqus+#{(5 * (nodes.to_i * node_ppn.to_i) ** 0.422).floor}'
-  - name: 'Abaqus/CAE 6.14 (Hardware Rendering)'
-    batch: 'oakley'
-    node:
+  - <<: *abaqus
+    name: 'Abaqus/CAE 6.14 (Hardware Rendering)'
+    node: &hardware_nodes
       - type: 'vis'
         ppn: 12
         desc: >
@@ -36,5 +37,19 @@ compute:
     pbs:
       envvars:
         ABAQUS_MODULE: 'abaqus/6.14'
-      resources:
-        software: 'abaqus+#{(5 * (nodes.to_i * node_ppn.to_i) ** 0.422).floor}'
+      resources: *resources
+  - <<: *abaqus
+    name: 'Abaqus/CAE 2016 (Software Rendering)'
+    node: *software_nodes
+    pbs:
+      envvars:
+        ABAQUS_MODULE: 'abaqus/2016'
+        GPU_OFF: '1'
+      resources: *resources
+  - <<: *abaqus
+    name: 'Abaqus/CAE 2016 (Hardware Rendering)'
+    node: *hardware_nodes
+    pbs:
+      envvars:
+        ABAQUS_MODULE: 'abaqus/2016'
+      resources: *resources
