@@ -29,7 +29,8 @@ compute:
   - <<: *abaqus
     name: 'Abaqus/CAE 6.14 (Hardware Rendering)'
     node: &hardware_nodes
-      - type: 'vis'
+      - title: 'vis'
+        type: 'vis:gpus=1'
         ppn: 12
         desc: >
           This node may come with 1 to 2 Nvidia GPUs. Allows for 3D
