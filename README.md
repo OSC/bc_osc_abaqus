@@ -56,6 +56,12 @@ batch job.
   node_modules/.bin/bower update --force
   ```
 
+4. Force the app to update for all users:
+
+   ```sh
+   touch tmp/restart.txt
+   ```
+
 ## Specification
 
 ### ROOT
