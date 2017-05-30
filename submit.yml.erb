@@ -1,0 +1,24 @@
+---
+script:
+  job_environment:
+    <%- unless version.blank? -%>
+    ABAQUS_MODULE: "<%= version %>"
+    <%- end -%>
+    <%- if node_type == "vis" -%>
+    ENABLE_VIS: "1"
+    <%- end -%>
+  native:
+    resources:
+      <%- if node_type == "vis" -%>
+      nodes: "<%= bc_num_slots %>:ppn=12:vis:gpus=1"
+      software: "abaqus+<%= (5 * (bc_num_slots.to_i * 12) ** 0.422).floor %>"
+      <%- elsif node_type == "bigmem" -%>
+      nodes: "<%= bc_num_slots %>:ppn=12:bigmem"
+      software: "abaqus+<%= (5 * (bc_num_slots.to_i * 12) ** 0.422).floor %>"
+      <%- elsif node_type == "hugemem" -%>
+      nodes: "<%= bc_num_slots %>:ppn=32:hugemem"
+      software: "abaqus+<%= (5 * (bc_num_slots.to_i * 32) ** 0.422).floor %>"
+      <%- else -%>
+      nodes: "<%= bc_num_slots %>:ppn=12"
+      software: "abaqus+<%= (5 * (bc_num_slots.to_i * 12) ** 0.422).floor %>"
+      <%- end -%>
