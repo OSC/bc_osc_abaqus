@@ -4,7 +4,7 @@
 ![GitHub License](https://img.shields.io/github/license/osc/bc_osc_abaqus.svg)
 
 A Batch Connect app designed for OSC OnDemand that launches Abaqus within an
-Oakley batch job.
+Owens batch job.
 
 ## Prerequisites
 

@@ -13,15 +13,15 @@ script:
   native:
     resources:
       <%- if node_type == "vis" -%>
-      nodes: "<%= bc_num_slots %>:ppn=12:vis:gpus=1"
-      software: "abaqus+<%= (5 * (bc_num_slots.to_i * 12) ** 0.422).floor %>"
+      nodes: "<%= bc_num_slots %>:ppn=28:vis:gpus=1"
+      software: "abaqus+<%= (5 * (bc_num_slots.to_i * 28) ** 0.422).floor %>"
       <%- elsif node_type == "bigmem" -%>
-      nodes: "<%= bc_num_slots %>:ppn=12:bigmem"
-      software: "abaqus+<%= (5 * (bc_num_slots.to_i * 12) ** 0.422).floor %>"
+      nodes: "<%= bc_num_slots %>:ppn=28:bigmem"
+      software: "abaqus+<%= (5 * (bc_num_slots.to_i * 28) ** 0.422).floor %>"
       <%- elsif node_type == "hugemem" -%>
-      nodes: "<%= bc_num_slots %>:ppn=32:hugemem"
-      software: "abaqus+<%= (5 * (bc_num_slots.to_i * 32) ** 0.422).floor %>"
+      nodes: "<%= bc_num_slots %>:ppn=48:hugemem"
+      software: "abaqus+<%= (5 * (bc_num_slots.to_i * 48) ** 0.422).floor %>"
       <%- else -%>
-      nodes: "<%= bc_num_slots %>:ppn=12"
-      software: "abaqus+<%= (5 * (bc_num_slots.to_i * 12) ** 0.422).floor %>"
+      nodes: "<%= bc_num_slots %>:ppn=28"
+      software: "abaqus+<%= (5 * (bc_num_slots.to_i * 28) ** 0.422).floor %>"
       <%- end -%>
