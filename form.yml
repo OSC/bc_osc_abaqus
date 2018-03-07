@@ -1,13 +1,18 @@
 ---
-title: "Abaqus/CAE"
 cluster: "owens"
-description: |
-  This app will launch an Abaqus/CAE GUI on one or more Owens nodes. You will
-  be able to interact with the Abaqus GUI through a VNC session.
+form:
+  - version
+  - bc_account
+  - bc_num_hours
+  - bc_num_slots
+  - node_type
+  - bc_vnc_resolution
+  - bc_email_on_started
 attributes:
   bc_vnc_resolution:
     required: true
   bc_account:
+    label: "Project"
     help: "You can leave this blank if **not** in multiple projects."
   node_type:
     widget: select
@@ -15,10 +20,10 @@ attributes:
     help: |
       - **any** - (*28 cores*) Use any available Owens node. This reduces the
         wait time as there are no node requirements.
-      - **vis** - (*28 cores*) This node includes an NVIDIA Tesla P100 GPU
-        with an X server running in the background. This allows for Hardware
-        Rendering with the GPU typically needed for 3D visualization using
-        VirtualGL. There are currently only 160 of these nodes on Owens.
+      - **vis** - (*28 cores*) Use an Owens node that has an [NVIDIA Tesla P100
+        GPU](http://www.nvidia.com/object/tesla-p100.html) with an X server
+        running in the background. This utilizes the GPU for hardware
+        accelerated 3D visualization. There are 160 of these nodes on Owens.
       - **hugemem** - (*48 cores*) Use an Owens node that has 1.5TB of
         available RAM as well as 48 cores. There are 16 of these nodes on
         Owens.
@@ -31,13 +36,6 @@ attributes:
     label: "Abaqus/CAE version"
     help: "This defines the version of Abaqus you want to load."
     options:
-      - ["6.14", "abaqus/6.14"]
+      - ["2017", "abaqus/2017"]
       - ["2016", "abaqus/2016"]
-form:
-  - version
-  - bc_num_hours
-  - bc_num_slots
-  - node_type
-  - bc_account
-  - bc_vnc_resolution
-  - bc_email_on_started
+      - ["6.14", "abaqus/6.14"]

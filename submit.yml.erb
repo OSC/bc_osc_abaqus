@@ -1,27 +1,19 @@
+<%-
+  num_nodes = bc_num_slots.blank? ? 1 : bc_num_slots.to_i
+-%>
 ---
 batch_connect:
   template: vnc
-
 script:
-  job_environment:
-    <%- unless version.blank? -%>
-    ABAQUS_MODULE: "<%= version %>"
-    <%- end -%>
-    <%- if node_type == "vis" -%>
-    ENABLE_VIS: "1"
-    <%- end -%>
   native:
     resources:
       <%- if node_type == "vis" -%>
-      nodes: "<%= bc_num_slots %>:ppn=28:vis:gpus=1"
-      software: "abaqus+<%= (5 * (bc_num_slots.to_i * 28) ** 0.422).floor %>"
-      <%- elsif node_type == "bigmem" -%>
-      nodes: "<%= bc_num_slots %>:ppn=28:bigmem"
-      software: "abaqus+<%= (5 * (bc_num_slots.to_i * 28) ** 0.422).floor %>"
+      nodes: "<%= num_nodes %>:ppn=28:vis:gpus=1"
+      #software: "abaqus+<%= (5 * (num_nodes * 28) ** 0.422).floor %>"
       <%- elsif node_type == "hugemem" -%>
-      nodes: "<%= bc_num_slots %>:ppn=48:hugemem"
-      software: "abaqus+<%= (5 * (bc_num_slots.to_i * 48) ** 0.422).floor %>"
+      nodes: "<%= num_nodes %>:ppn=48:hugemem"
+      #software: "abaqus+<%= (5 * (num_nodes * 48) ** 0.422).floor %>"
       <%- else -%>
-      nodes: "<%= bc_num_slots %>:ppn=28"
-      software: "abaqus+<%= (5 * (bc_num_slots.to_i * 28) ** 0.422).floor %>"
+      nodes: "<%= num_nodes %>:ppn=28"
+      #software: "abaqus+<%= (5 * (num_nodes * 28) ** 0.422).floor %>"
       <%- end -%>
