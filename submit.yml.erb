@@ -9,11 +9,11 @@ script:
     resources:
       <%- if node_type == "vis" -%>
       nodes: "<%= num_nodes %>:ppn=28:vis:gpus=1"
-      #software: "abaqus+<%= (5 * (num_nodes * 28) ** 0.422).floor %>"
+      software: "abaqus+<%= (5 * (num_nodes * 28) ** 0.422).floor %>"
       <%- elsif node_type == "hugemem" -%>
       nodes: "<%= num_nodes %>:ppn=48:hugemem"
-      #software: "abaqus+<%= (5 * (num_nodes * 48) ** 0.422).floor %>"
+      software: "abaqus+<%= (5 * (num_nodes * 48) ** 0.422).floor %>"
       <%- else -%>
       nodes: "<%= num_nodes %>:ppn=28"
-      #software: "abaqus+<%= (5 * (num_nodes * 28) ** 0.422).floor %>"
+      software: "abaqus+<%= (5 * (num_nodes * 28) ** 0.422).floor %>"
       <%- end -%>
