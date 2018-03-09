@@ -15,6 +15,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Updated the date in `LICENSE.txt`.
 - Changed the product icon.
 
+### Removed
+- Removed support for requesting multiple nodes as we can't verify it will use
+  these nodes.
+
 ## [0.2.0] - 2017-12-11
 ### Changed
 - Port to Owens Cluster.

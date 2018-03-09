@@ -9,6 +9,7 @@ form:
   - bc_vnc_resolution
   - bc_email_on_started
 attributes:
+  bc_num_slots: 1
   bc_vnc_resolution:
     required: true
   bc_account:
