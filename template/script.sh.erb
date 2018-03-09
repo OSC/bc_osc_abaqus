@@ -41,7 +41,18 @@ module list
 set -x
 <%- if gpu -%>
 module load intel/16.0.3 virtualgl
-vglrun abaqus cae
+vglrun abaqus cae \
 <%- else -%>
-abaqus cae -mesa
+abaqus cae -mesa \
 <%- end -%>
+  |& tee "<%= session.staged_root.join("abaqus.log") %>"
+ABAQUS_EXIT_CODE=${PIPESTATUS[0]}
+{ set +x; } 2>/dev/null
+
+if [[ ${ABAQUS_EXIT_CODE} -ne 0 ]]; then
+cat | xmessage -file - -center <<- EOL
+ABAQUS/CAE died with the following output:
+
+$(cat "<%= session.staged_root.join("abaqus.log") %>")
+EOL
+fi

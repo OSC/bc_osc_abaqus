@@ -8,6 +8,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - Added Abaqus 2017 to the app.
   [#4](https://github.com/OSC/bc_osc_abaqus/issues/4)
+- Display ABAQUS output to user if it crashes.
+  [#5](https://github.com/OSC/bc_osc_abaqus/issues/5)
 
 ### Changed
 - Modified the `CHANGELOG.md` formatting.
