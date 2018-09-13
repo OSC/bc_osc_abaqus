@@ -37,6 +37,7 @@ attributes:
     label: "Abaqus/CAE version"
     help: "This defines the version of Abaqus you want to load."
     options:
+      - ["2018", "abaqus/2018"]
       - ["2017", "abaqus/2017"]
       - ["2016", "abaqus/2016"]
       - ["6.14", "abaqus/6.14"]
