@@ -4,21 +4,22 @@ form:
   - version
   - bc_account
   - bc_num_hours
-  - num_cores
+  - bc_num_cores
   - bc_num_slots
   - node_type
   - bc_vnc_resolution
   - bc_email_on_started
 attributes:
-  num_cores:
+  bc_num_cores:
     widget: "number_field"
     label: "Number of cores"
     value: 1
     help: |
       Number of cores (dependent on Node Type). Leave blank if requesting full node.
     min: 1
-    max: 48  # hugemem only
+    max: 28
     step: 1
+    id: 'num_cores'
   bc_num_slots: 1
   bc_vnc_resolution:
     required: true
@@ -37,7 +38,7 @@ attributes:
         accelerated 3D visualization. There are 160 of these nodes on Owens.
       - **hugemem** - (*48 cores*) Use an Owens node that has 1.5TB of
         available RAM as well as 48 cores. There are 16 of these nodes on
-        Owens.
+        Owens. These nodes always reserve the entire node.
     options:
       - [ "any",     "any"     ]
       - [ "vis",     "vis"     ]

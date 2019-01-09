@@ -1,10 +1,9 @@
 <%-
   num_nodes = bc_num_slots.blank? ? 1 : bc_num_slots.to_i
-  num_cores = num_cores.to_i
-  if node_type == 'hugemem'
-    num_cores = num_cores > 0 ? [48, num_cores].min : 48
-  else
-    num_cores = num_cores > 0 ? [28, num_cores].min : 28
+  num_cores = bc_num_cores.to_i
+  
+  if node_type != "hugemem"
+    num_cores = num_cores > 0 ? [28, num_cores].min : 28   
   end
 -%>
 ---
@@ -15,11 +14,11 @@ script:
     resources:
       <%- if node_type == "vis" -%>
       nodes: "<%= num_nodes %>:ppn=<%= num_cores %>:vis:gpus=1"
-      software: "abaqus+<%= (5 * (num_nodes * 28) ** 0.422).floor %>"
+      software: "abaqus+<%= (5 * (num_nodes * num_cores) ** 0.422).floor %>"
       <%- elsif node_type == "hugemem" -%>
-      nodes: "<%= num_nodes %>:ppn=<%= num_cores %>:hugemem"
+      nodes: "<%= num_nodes %>:ppn=48:hugemem"
       software: "abaqus+<%= (5 * (num_nodes * 48) ** 0.422).floor %>"
       <%- else -%>
       nodes: "<%= num_nodes %>:ppn=<%= num_cores %>"
-      software: "abaqus+<%= (5 * (num_nodes * 28) ** 0.422).floor %>"
+      software: "abaqus+<%= (5 * (num_nodes * num_cores) ** 0.422).floor %>"
       <%- end -%>
