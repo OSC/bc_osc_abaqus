@@ -16,7 +16,7 @@ attributes:
     value: 1
     help: |
       Number of cores (dependent on Node Type). Leave blank if requesting full node.
-    min: 1
+    min: 0
     max: 28
     step: 1
     id: 'num_cores'

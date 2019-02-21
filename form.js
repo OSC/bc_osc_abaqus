@@ -1,13 +1,17 @@
 'use strict'
 
 /**
- * Fix num cores
+ * Fix num cores, allowing blanks to remain
  */
 function fix_num_cores() {
   let node_type_input = $('#batch_connect_session_context_node_type');
   let node_type = node_type_input.val();
   let num_cores_input = $('#num_cores');
-  
+
+  if(num_cores_input.val() === '') {
+    return;
+  }
+
   if(node_type === 'hugemem') {
     set_ppn_owens_hugemem(num_cores_input);
   } else {
