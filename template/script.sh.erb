@@ -32,7 +32,7 @@ until fluxbox -display "${DISPLAY}.0" -rc "<%= session.staged_root.join("fluxbox
 #
 
 # Load the required environment
-module load <%= context.version %>
+module load intel/18.0.3 <%= context.version %>
 
 # Output debug information
 module list
@@ -40,7 +40,7 @@ module list
 # Launch Abaqus
 set -x
 <%- if gpu -%>
-module load intel/16.0.3 virtualgl
+module load virtualgl
 vglrun abaqus cae \
 <%- else -%>
 abaqus cae -mesa \
