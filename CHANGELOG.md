@@ -5,6 +5,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+## [0.5.3] - 2019-07-10
+### Added
+- Added xalt
+
 ## [0.5.2] - 2019-06-03
 ### Changed
 - Intel 18.0.3 replaces 16.0.3 and is now always loaded, instead of only when a GPU node is selected
