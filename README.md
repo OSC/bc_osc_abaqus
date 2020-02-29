@@ -76,4 +76,4 @@ Again, you do not need to restart the app as it isn't a Passenger app.
 * Documentation, website content, and logo is licensed under
   [CC-BY-4.0](https://creativecommons.org/licenses/by/4.0/)
 * Code is licensed under MIT (see LICENSE.txt)
-* The trademarks, trade names, service marks, logos and other distinctive signs of Dassault Systèmes which are used in the app are protected by French, European and other applicable legislations.
+* Abaqus, the 3DS logo, SIMULIA, CATIA, and Unified FEA are trademarks or registered trademarks of Dassault Systèmes or its subsidiaries in the United States and/or other countries.
