@@ -1,5 +1,7 @@
 ---
-cluster: "owens"
+cluster:
+  - "owens"
+  - "owens-slurm"
 form:
   - version
   - bc_account
@@ -40,9 +42,9 @@ attributes:
         available RAM as well as 48 cores. There are 16 of these nodes on
         Owens. These nodes always reserve the entire node.
     options:
-      - [ "any",     "any"     ]
-      - [ "vis",     "vis"     ]
-      - [ "hugemem", "hugemem" ]
+      - "any"
+      - "vis"
+      - "hugemem"
   version:
     widget: select
     label: "Abaqus/CAE version"
