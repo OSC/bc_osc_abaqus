@@ -6,7 +6,7 @@
 
   # no idea where this license calculation comes from.
   licenses = (5 * (nodes * ppn) ** 0.422).floor
-  base_slurm_args = [ "--nodes", "#{nodes}", "--ntasks-per-node", "#{ppn}", "--licenses", "abaqus@license6:#{licenses}"]
+  base_slurm_args = [ "--nodes", "#{nodes}", "--ntasks-per-node", "#{ppn}", "--licenses", "abaqus@osc:#{licenses}"]
   base_torque_args = node_type == 'any' ? "#{nodes}:ppn=#{ppn}" : "#{nodes}:ppn=#{ppn}:#{node_type}"
   
 
