@@ -2,38 +2,27 @@
   ppn = bc_num_cores.blank? ? 28 : bc_num_cores.to_i
   ppn = 48 if node_type == 'hugemem'
   nodes = bc_num_slots.blank? ? 1 : bc_num_slots.to_i
-  torque_cluster = OodAppkit.clusters[cluster].job_config[:adapter] == 'torque'
 
   # no idea where this license calculation comes from.
   licenses = (5 * (nodes * ppn) ** 0.422).floor
   base_slurm_args = [ "--nodes", "#{nodes}", "--ntasks-per-node", "#{ppn}", "--licenses", "abaqus@osc:#{licenses}"]
-  base_torque_args = node_type == 'any' ? "#{nodes}:ppn=#{ppn}" : "#{nodes}:ppn=#{ppn}:#{node_type}"
-  
 
   case node_type
   when "hugemem"
     partition = bc_num_slots.to_i > 1 ? "hugemem-parallel" : "hugemem"
     slurm_args = base_slurm_args + [ "--partition", partition ]
-    torque_args = base_torque_args
   when "vis"
     slurm_args = base_slurm_args + ["--gpus-per-node", "1", "--gres", "vis" ]
-    torque_args = "#{base_torque_args}:gpus=1"
   else
     slurm_args = base_slurm_args
-    torque_args = base_torque_args
   end
 -%>
 ---
 batch_connect:
   template: "vnc"
 script:
+  accounting_id: "<%= account %>"
   native:
-  <%- if torque_cluster %>
-    resources:
-      nodes: "<%= torque_args %>"
-      software: "abaqus+<%= licenses %>"
-  <%- else %>
   <%- slurm_args.each do |arg| %>
     - "<%= arg %>"
-  <%- end %>
   <%- end %>
