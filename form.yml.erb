@@ -50,9 +50,21 @@ attributes:
         available RAM as well as 48 cores. There are 16 of these nodes on
         Owens. These nodes always reserve the entire node.
     options:
-      - "any"
-      - "vis"
-      - "hugemem"
+      - [
+        'any', 'any',
+        data-max-num-cores: 28,
+        data-min-num-cores: 0,
+        ]
+      - [
+        'vis', 'vis',
+        data-max-num-cores: 28,
+        data-min-num-cores: 0,
+        ]
+      - [
+        'hugemem', 'hugemem',
+        data-max-num-cores: 48,
+        data-min-num-cores: 48,
+        ]
   version:
     widget: select
     label: "Abaqus/CAE version"
