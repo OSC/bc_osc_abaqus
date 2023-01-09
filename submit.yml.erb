@@ -1,6 +1,5 @@
 <%-
   ppn = num_cores.blank? ? 28 : num_cores.to_i
-  ppn = 48 if node_type == 'hugemem'
   nodes = bc_num_slots.blank? ? 1 : bc_num_slots.to_i
 
   # no idea where this license calculation comes from.
