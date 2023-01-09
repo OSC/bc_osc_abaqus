@@ -61,13 +61,15 @@ attributes:
       - [
         'hugemem', 'hugemem',
         data-max-num-cores: 48,
-        data-min-num-cores: 48,
+        data-min-num-cores: 4,
         ]
   version:
     widget: select
     label: "Abaqus/CAE version"
     help: "This defines the version of Abaqus you want to load."
     options:
+      - ["2022", "abaqus/2022"]
+      - ["2021", "abaqus/2021"]
       - ["2020", "abaqus/2020"]
       - ["2018", "abaqus/2018"]
       - ["2017", "abaqus/2017"]
