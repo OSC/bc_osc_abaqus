@@ -5,6 +5,17 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## [0.10.0] - 2023-01-09
+
+- Support for partical access to hugemem nodes in [23](https://github.com/OSC/bc_osc_abaqus/pull/23).
+
+## [0.9.2] - 2022-04-08
+
+- Added abaques CAE licens in [20](https://github.com/OSC/bc_osc_abaqus/pull/20).
+- Use the newer packaging scheme in [19](https://github.com/OSC/bc_osc_abaqus/pull/19).
+
+
 ## [0.9.1] - 2021-12-17
 
 ### Fixed
@@ -116,7 +127,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - Initial release!
 
-[Unreleased]: https://github.com/OSC/bc_osc_abaqus/compare/v0.9.1...HEAD
+[Unreleased]: https://github.com/OSC/bc_osc_abaqus/compare/v0.10.0...HEAD
+[0.10.0]: https://github.com/OSC/bc_osc_abaqus/compare/v0.9.2...v0.10.0
+[0.9.2]: https://github.com/OSC/bc_osc_abaqus/compare/v0.9.1...v0.9.2
 [0.9.1]: https://github.com/OSC/bc_osc_abaqus/compare/v0.9.0...v0.9.1
 [0.9.0]: https://github.com/OSC/bc_osc_abaqus/compare/v0.8.0...v0.9.0
 [0.8.0]: https://github.com/OSC/bc_osc_abaqus/compare/v0.7.1...v0.8.0
