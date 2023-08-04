@@ -1,7 +1,6 @@
 ---
 cluster:
   - "owens"
-  - 'ascend'
 form:
   - auto_modules_abaqus
   - auto_accounts
