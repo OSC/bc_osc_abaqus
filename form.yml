@@ -1,6 +1,7 @@
 ---
 cluster:
   - "owens"
+  - "cardinal"
 form:
   - auto_modules_abaqus
   - auto_accounts
@@ -38,16 +39,21 @@ attributes:
     options:
       - [
         'any', 'any',
-        data-max-num-cores: 28,
-        data-min-num-cores: 1,
+        data-max-num-cores-for-cluster-owens: 28,
+        data-min-num-cores-for-cluster-owens: 1,
+        data-max-num-cores-for-cluster-cardinal: 48,
+        data-min-num-cores-for-cluster-cardinal: 1,
         ]
       - [
         'vis', 'vis',
-        data-max-num-cores: 28,
-        data-min-num-cores: 1,
+        data-max-num-cores-for-cluster-owens: 28,
+        data-min-num-cores-for-cluster-owens: 1,
+        data-max-num-cores-for-cluster-cardinal: 48,
+        data-min-num-cores-for-cluster-cardinal: 1,
         ]
       - [
         'hugemem', 'hugemem',
-        data-max-num-cores: 48,
-        data-min-num-cores: 4,
+        data-max-num-cores-for-cluster-owens: 48,
+        data-min-num-cores-for-cluster-owens: 4,
+        data-option-for-cluster-cardinal: false,
         ]
