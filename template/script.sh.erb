@@ -39,11 +39,7 @@ fi
 #
 
 # Load the required environment
-<%- if context.cluster == 'cardinal' -%>
-module load xalt/latest <%= context.auto_modules_abaqus %>
-<%- else -%>
-module load xalt/latest intel/18.0.3 <%= context.auto_modules_abaqus %>
-<%- end -%>
+module load <%= context.version %>
 
 # Output debug information
 module list
