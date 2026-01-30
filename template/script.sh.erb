@@ -47,7 +47,7 @@ module list
 # Launch Abaqus
 set -x
 <%- if gpu -%>
-module load virtualgl
+module load virtualgl/3.1.1
 vglrun abaqus cae \
 <%- else -%>
 abaqus cae -mesa \
