@@ -1,26 +1,46 @@
 <%-
-  ppn = num_cores.blank? ? 28 : num_cores.to_i
-  nodes = bc_num_slots.blank? ? 1 : bc_num_slots.to_i
-
-  # no idea where this license calculation comes from.
-  licenses = (5 * (nodes * ppn) ** 0.422).floor
-  base_slurm_args = [ "--nodes", "#{nodes}", "--ntasks-per-node", "#{ppn}", "--licenses", "abaqus@osc:#{licenses},abaquscae@osc:1"]
-
-  case node_type
-  when "hugemem"
-    partition = bc_num_slots.to_i > 1 ? "hugemem-parallel" : "hugemem"
-    slurm_args = base_slurm_args + [ "--partition", partition ]
-  when "vis"
-    slurm_args = base_slurm_args + ["--gpus-per-node", "1", "--gres", "vis" ]
-  else
-    slurm_args = base_slurm_args
-  end
+  # Official Abaqus license calculation
+  # https://www.osc.edu/resources/available_software/software_list/abaqus
+  # M = int(5 x N^0.422)
+  # Previously we limited to one node, need to follow up and see
+  #   if this is still an issue
+  n_licenses = (5 * (1 * global_num_cores.to_i) ** 0.422).floor
+  licenses = "abaqus@osc:#{n_licenses},abaquscae@osc:1"
 -%>
 ---
 batch_connect:
   template: "vnc"
 script:
-  native:
-  <%- slurm_args.each do |arg| %>
-    - "<%= arg %>"
+  # set GPUs
+  <%- if global_gpus.to_i > 0 -%>
+  gpus_per_node: <%= global_gpus %>
   <%- end %>
+  native:
+  # set nodes
+  - "--nodes"
+  - "<%= bc_num_nodes.to_i %>"
+  # set CPUs
+  - "--ntasks-per-node"
+  - "<%= global_num_cores.to_i %>"
+  # set partition
+  - "--partition"
+  <%- if global_enable_debug.to_i == 1 -%>
+  - "debug"
+  <%- elsif global_gpus.to_i > 0 -%>
+  - "<%= global_gpu_type.split('-').drop(1).join('-') %>"
+  <%- else %>
+  - "batch"
+  <%- end %>
+  # set memory
+  <%- if global_enable_mem.to_i == 1  -%>
+  - "--mem"
+  - "<%= global_mem.to_i%>G"
+  <%- end %>
+  # set visualization
+  <%- if global_enable_vis.to_i == 1 -%>
+  - "--gres"
+  - "vis"
+  <%- end %>
+  # set license
+  - "--licenses"
+  - "<%= licenses %>"
