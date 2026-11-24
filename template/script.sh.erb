@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-<%- gpu = context.node_type.include?("vis") -%>
+<%- gpu = context.global_enable_vis.to_i == 1 -%>
 
 # Clean the environment
 module purge
@@ -39,7 +39,7 @@ fi
 #
 
 # Load the required environment
-module load <%= context.version %>
+module load <%= context.auto_modules_abaqus %>
 
 # Output debug information
 module list
