@@ -16,9 +16,6 @@ script:
   gpus_per_node: <%= global_gpus %>
   <%- end %>
   native:
-  # set nodes
-  - "--nodes"
-  - "<%= bc_num_nodes.to_i %>"
   # set CPUs
   - "--ntasks-per-node"
   - "<%= global_num_cores.to_i %>"
